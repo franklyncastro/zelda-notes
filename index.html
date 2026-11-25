@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Zelda OoT – Checklist</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap">
+  <style>
+    :root {
+      --bg: #e9dfbf;
+      --bg2: #d8c995;
+      --card: #f8f0d4;
+      --tx: #2b2412;
+      --mu: #6e6240;
+      --gold: #a8791a;
+      --ac: #2f7d3a;
+      --on: #cfe9c3;
+      --c: #cfe0ff;
+      --a: #ffd9bd;
+      --bd: #b79c52;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      color-scheme: light
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0f1f15;
+        --bg2: #183222;
+        --card: #1b3324;
+        --tx: #f3ebcf;
+        --mu: #b5ab85;
+        --gold: #e6b93c;
+        --ac: #5fd16f;
+        --on: #24502f;
+        --c: #22385c;
+        --a: #5a3722;
+        --bd: #7b6a2c;
+        color-scheme: dark
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0f1f15;
+      --bg2: #183222;
+      --card: #1b3324;
+      --tx: #f3ebcf;
+      --mu: #b5ab85;
+      --gold: #e6b93c;
+      --ac: #5fd16f;
+      --on: #24502f;
+      --c: #22385c;
+      --a: #5a3722;
+      --bd: #7b6a2c;
+      color-scheme: dark
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 50% 0, var(--bg2), var(--bg) 60%) fixed;
+      color: var(--tx);
+      font: 16px/1.35 Georgia, serif;
+      min-height: 100vh
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      height: env(safe-area-inset-top, 0px);
+      background: var(--bg2);
+      z-index: 20
+    }
+
+    header {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 10;
+      background: var(--bg2);
+      border-bottom: 3px double var(--gold);
+      padding: 8px 12px
+    }
+
+    .row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto
+    }
+
+    h1 {
+      font: 700 18px Cinzel, Georgia, serif;
+      color: var(--gold);
+      margin: 0;
+      flex: 1;
+      min-width: 170px
+    }
+
+    button {
+      font: inherit;
+      color: var(--tx);
+      background: var(--card);
+      border: 1px solid var(--bd);
+      border-radius: 10px;
+      padding: 5px 10px;
+      cursor: pointer
+    }
+
+    button.on {
+      background: var(--gold);
+      color: #1b1500;
+      border-color: var(--gold)
+    }
+
+    #hr {
+      flex: 1 1 100%;
+      font-size: 16px;
+      letter-spacing: 1px
+    }
+
+    nav {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 8px auto 0
+    }
+
+    nav button {
+      white-space: nowrap;
+      font-size: 14px
+    }
+
+    nav small {
+      color: var(--mu);
+      margin-left: 4px
+    }
+
+    nav button.on small {
+      color: #1b1500
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 12px 12px 50px
+    }
+
+    h2 {
+      font: 700 20px Cinzel, Georgia, serif;
+      color: var(--gold);
+      margin: 4px 0 10px;
+      display: flex;
+      justify-content: space-between
+    }
+
+    h2 small {
+      font: 14px Georgia;
+      color: var(--mu)
+    }
+
+    .g {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 8px
+    }
+
+    .t {
+      position: relative;
+      background: var(--card);
+      border: 2px solid var(--bd);
+      border-radius: 12px;
+      padding: 10px 6px;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      min-height: 100px;
+      transition: transform .15s
+    }
+
+    .t:hover {
+      transform: translateY(-2px)
+    }
+
+    .t .ic {
+      font-size: 30px;
+      display: block;
+      filter: grayscale(1);
+      opacity: .4;
+      transition: .25s
+    }
+
+    .t .nm {
+      font-size: 13px;
+      display: block;
+      margin-top: 3px;
+      font-weight: 700
+    }
+
+    .t .lc {
+      font-size: 11px;
+      display: block;
+      color: var(--mu);
+      margin-top: 2px
+    }
+
+    .t.on {
+      background: var(--on);
+      border-color: var(--ac)
+    }
+
+    .t.on .ic {
+      filter: none;
+      opacity: 1
+    }
+
+    .t.on::after {
+      content: "✓";
+      position: absolute;
+      top: 3px;
+      right: 8px;
+      color: var(--ac);
+      font-weight: 700
+    }
+
+    .t.pop {
+      animation: pop .6s
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(.8)
+      }
+
+      40% {
+        transform: scale(1.15);
+        box-shadow: 0 0 24px var(--gold)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    .tag {
+      position: absolute;
+      top: 3px;
+      left: 5px;
+      font-size: 10px;
+      border-radius: 6px;
+      padding: 0 4px
+    }
+
+    .tag.c {
+      background: var(--c)
+    }
+
+    .tag.a {
+      background: var(--a)
+    }
+
+    .cn {
+      cursor: default
+    }
+
+    .cn .ic {
+      filter: none;
+      opacity: 1
+    }
+
+    .cn b {
+      display: block;
+      font-size: 20px
+    }
+
+    .cn button {
+      width: 38px;
+      font-size: 18px
+    }
+
+    .gs {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: var(--card);
+      border: 2px solid var(--bd);
+      border-radius: 12px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      cursor: pointer
+    }
+
+    .gs.on {
+      background: var(--on);
+      border-color: var(--ac)
+    }
+
+    .gs.on .ic {
+      filter: none;
+      opacity: 1
+    }
+
+    .gs .ic {
+      font-size: 26px;
+      filter: grayscale(1);
+      opacity: .4
+    }
+
+    .gs .tx {
+      flex: 1;
+      font-size: 14px
+    }
+
+    .gs .tx small {
+      color: var(--mu);
+      display: block
+    }
+
+    .gs .n {
+      font-size: 11px;
+      color: var(--mu)
+    }
+
+    .dg {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: var(--card);
+      border: 2px solid var(--bd);
+      border-radius: 12px;
+      padding: 8px;
+      margin-bottom: 6px
+    }
+
+    .dg b {
+      flex: 1 1 100%;
+      font-size: 14px
+    }
+
+    .dg {
+      margin: 0 0 6px
+    }
+
+    .dg button {
+      padding: 8px 12px;
+      filter: grayscale(1);
+      opacity: .6
+    }
+
+    .dg button.on {
+      filter: none;
+      opacity: 1;
+      background: var(--on);
+      border-color: var(--ac)
+    }
+
+    .ah {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      padding: 10px 12px;
+      margin-bottom: 6px
+    }
+
+    .ah.ok {
+      background: var(--on);
+      border-color: var(--ac)
+    }
+
+    .ac {
+      margin-bottom: 4px
+    }
+
+    .fl {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 10px
+    }
+
+    select {
+      font: inherit;
+      background: var(--card);
+      color: var(--tx);
+      border: 1px solid var(--bd);
+      border-radius: 10px;
+      padding: 5px
+    }
+
+    #toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+      transform: translate(-50%, 40px);
+      opacity: 0;
+      background: var(--gold);
+      color: #1b1500;
+      font: 700 15px Cinzel, Georgia, serif;
+      padding: 10px 18px;
+      border-radius: 14px;
+      transition: .3s;
+      z-index: 30;
+      pointer-events: none
+    }
+
+    #toast.s {
+      transform: translate(-50%, 0);
+      opacity: 1
+    }
+
+    .ft {
+      text-align: center;
+      color: var(--mu);
+      font-size: 13px;
+      margin-top: 26px
+    }
+
+    @media (max-width:700px) {
+      header {
+        position: static
+      }
+
+      nav button {
+        font-size: 13px;
+        padding: 4px 8px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="row">
+      <h1 id="ti"></h1><button id="fl"></button><button id="fc"></button><button id="fa"></button><button
+        id="sn"></button><button id="lg"></button>
+      <div id="hr"></div>
+    </div>
+    <nav id="nv"></nav>
+  </header>
+  <main id="m"></main>
+  <div class="ft"><button id="rs"></button>
+    <p id="nt"></p>
+  </div>
+  <div id="toast"></div>
+  <script>
+    // es|en|icono|edad(c/a/b)|dónde es|dónde en
+    var D = [
+      ["main", "Historia", "Story", "🗺️", [
+        "Esmeralda Kokiri|Kokiri’s Emerald|💚|c|Gran Árbol Deku|Great Deku Tree",
+        "Rubí Goron|Goron’s Ruby|🔴|c|Cueva de los Dodongos|Dodongo’s Cavern",
+        "Zafiro Zora|Zora’s Sapphire|🔵|c|Tripa de Jabu-Jabu|Jabu-Jabu’s Belly",
+        "Ocarina del Tiempo|Ocarina of Time|🎶|c|Castillo de Hyrule (Zelda)|Hyrule Castle (Zelda)",
+        "Espada Maestra|Master Sword|⚔️|b|Templo del Tiempo|Temple of Time",
+        "Medallón del Bosque|Forest Medallion|🌲|a|Jefe: Ganon Fantasma|Boss: Phantom Ganon",
+        "Medallón del Fuego|Fire Medallion|🔥|a|Jefe: Volvagia|Boss: Volvagia",
+        "Medallón del Agua|Water Medallion|💧|a|Jefe: Morpha|Boss: Morpha",
+        "Medallón del Espíritu|Spirit Medallion|🏜️|a|Jefe: Birria Gemela|Boss: Twinrova",
+        "Medallón de la Sombra|Shadow Medallion|💀|a|Jefe: Bongo Bongo|Boss: Bongo Bongo",
+        "Medallón de la Luz|Light Medallion|✨|a|Rauru, Templo de la Luz|Rauru, Chamber of Sages",
+        "Derrotar a Ganon|Defeat Ganon|👑|a|Torre de Ganon|Ganon’s Tower"
+      ]],
+      ["dun", "Mazmorras", "Dungeons", "🏰", [
+        "Árbol Deku|Deku Tree|🌳|c|Bosque Kokiri|Kokiri Forest",
+        "Cueva Dodongo|Dodongo’s Cavern|🪨|c|Montaña de la Muerte|Death Mountain",
+        "Tripa de Jabu-Jabu|Jabu-Jabu’s Belly|🐟|c|Fuente Zora|Zora’s Fountain",
+        "Templo del Bosque|Forest Temple|🌲|a|Pradera Sagrada|Sacred Forest Meadow",
+        "Templo del Fuego|Fire Temple|🔥|a|Cráter de la Montaña|DM Crater",
+        "Templo del Agua|Water Temple|💧|a|Lago Hylia|Lake Hylia",
+        "Templo de la Sombra|Shadow Temple|💀|a|Cementerio de Kakariko|Kakariko Graveyard",
+        "Templo del Espíritu|Spirit Temple|🏜️|a|Coloso del Desierto|Desert Colossus",
+        "Caverna de Hielo|Ice Cavern|❄️|a|Región Zora|Zora’s Domain",
+        "Fondo del Pozo|Bottom of the Well|🕳️|b|Kakariko|Kakariko Village",
+        "Gimnasio Gerudo|Gerudo Training Ground|🏹|a|Fortaleza Gerudo|Gerudo Fortress",
+        "Castillo de Ganon|Ganon’s Castle|🏯|a|Castillo de Hyrule|Hyrule Castle"
+      ]],
+      ["son", "Canciones", "Songs", "🎵", [
+        "Nana de Zelda|Zelda’s Lullaby|💤|c|Zelda|Zelda",
+        "Canción de Epona|Epona’s Song|🐴|c|Malon, Rancho Lon Lon|Malon, Lon Lon Ranch",
+        "Canción de Saria|Saria’s Song|🍃|c|Saria, Bosque Perdido|Saria, Lost Woods",
+        "Canción del Sol|Sun’s Song|☀️|c|Tumba real, Cementerio|Royal Tomb, Graveyard",
+        "Canción del Tiempo|Song of Time|⏳|c|Templo del Tiempo|Temple of Time",
+        "Canción de la Tormenta|Song of Storms|⛈️|c|Molino de Kakariko|Kakariko Windmill",
+        "Minueto del Bosque|Minuet of Forest|🌲|a|Sheik, Bosque Perdido|Sheik, Lost Woods",
+        "Bolero del Fuego|Bolero of Fire|🔥|a|Sheik, Cráter|Sheik, DM Crater",
+        "Serenata del Agua|Serenade of Water|💧|a|Sheik, Lago Hylia|Sheik, Lake Hylia",
+        "Réquiem del Espíritu|Requiem of Spirit|🏜️|a|Sheik, Coloso|Sheik, Colossus",
+        "Nocturno de la Sombra|Nocturne of Shadow|🌑|a|Sheik, Kakariko|Sheik, Kakariko",
+        "Preludio de la Luz|Prelude of Light|✨|a|Sheik, Templo del Tiempo|Sheik, Temple of Time"
+      ]],
+      ["chi", "Link niño", "Child Link", "🧒", [
+        "Espada Kokiri|Kokiri Sword|🗡️|c|Cofre, Bosque Kokiri|Chest, Kokiri Forest",
+        "Escudo Deku|Deku Shield|🛡️|c|Tienda Kokiri|Kokiri Shop",
+        "Escudo Hyliano|Hylian Shield|🛡️|b|Bazar|Bazaar",
+        "Tirachinas|Fairy Slingshot|🎯|c|Gran Árbol Deku|Deku Tree",
+        "Bombas|Bombs|💣|c", "Bombchus|Bombchus|🐭|b",
+        "Bumerán|Boomerang|🪃|c|Tripa de Jabu-Jabu|Jabu-Jabu’s Belly",
+        "Lente de la Verdad|Lens of Truth|🔍|b|Fondo del Pozo|Bottom of the Well",
+        "Brazalete Goron|Goron’s Bracelet|💪|c|Darunia, Ciudad Goron|Darunia, Goron City",
+        "Escama plateada|Silver Scale|🏊|c|Buceo, Dominio Zora|Diving, Zora’s Domain",
+        "Botella con Carta de Ruto|Ruto’s Letter bottle|💌|c", "Epona|Epona|🐎|b|Rancho Lon Lon|Lon Lon Ranch"
+      ]],
+      ["mask", "Máscaras", "Masks", "🎭", [
+        "Máscara de Keaton|Keaton Mask|🦊|c", "Máscara de Calavera|Skull Mask|💀|c",
+        "Máscara de Espanto|Spooky Mask|👻|c", "Capucha de Conejo|Bunny Hood|🐰|c", "Máscara Goron|Goron Mask|🪨|c",
+        "Máscara Zora|Zora Mask|🐠|c", "Máscara Gerudo|Gerudo Mask|🏴‍☠️|c",
+        "Máscara de la Verdad|Mask of Truth|👁️|c"
+      ]],
+      ["adu", "Link adulto", "Adult Link", "🧑", [
+        "Gancho|Hookshot|🪝|a|Tumba de Dampé|Dampé’s Grave",
+        "Gancho largo|Longshot|⛓️|a|Templo del Agua|Water Temple",
+        "Arco de las Hadas|Fairy Bow|🏹|a|Templo del Bosque|Forest Temple",
+        "Flechas de Fuego|Fire Arrows|🔥|a|Lago Hylia|Lake Hylia",
+        "Flechas de Hielo|Ice Arrows|❄️|a|Gimnasio Gerudo|Gerudo Training Ground",
+        "Flechas de Luz|Light Arrows|🌟|a|Zelda, tras Ganondorf|Zelda, after Ganondorf",
+        "Martillo Megatón|Megaton Hammer|🔨|a|Templo del Fuego|Fire Temple",
+        "Botas de Hierro|Iron Boots|🥾|a|Caverna de Hielo|Ice Cavern",
+        "Botas Voladoras|Hover Boots|🪽|a|Templo de la Sombra|Shadow Temple",
+        "Escudo Espejo|Mirror Shield|🪞|a|Templo del Espíritu|Spirit Temple",
+        "Túnica Goron|Goron Tunic|🟥|a|Ciudad Goron|Goron City",
+        "Túnica Zora|Zora Tunic|🟦|a|Dominio Zora|Zora’s Domain",
+        "Guantelete plateado|Silver Gauntlets|🥈|a", "Guantelete dorado|Golden Gauntlets|🥇|a",
+        "Escama dorada|Golden Scale|🐟|a|Pesca, pez grande|Fishing, big fish",
+        "Espada de Biggoron|Biggoron’s Sword|🗡️|a|Montaña de la Muerte|Death Mountain"
+      ]],
+      ["mag", "Magia y botellas", "Magic & bottles", "🔮", [
+        "Medidor de magia|Magic meter|🧪|b", "Magia doble|Double magic|⚗️|a", "Fuego de Din|Din’s Fire|🔥|a",
+        "Viento de Farore|Farore’s Wind|🟢|a", "Amor de Nayru|Nayru’s Love|💎|a", "Botella 1|Bottle 1|🍶|b",
+        "Botella 2|Bottle 2|🍶|b", "Botella 3|Bottle 3|🍶|b", "Botella 4|Bottle 4|🍶|a"
+      ]],
+      ["upg", "Mejoras", "Upgrades", "⬆️", [
+        "Cartera de adulto|Adult’s Wallet|👛|b", "Cartera gigante|Giant’s Wallet|💰|a",
+        "Carcaj grande|Big Quiver|🎒|a", "Carcaj gigante|Biggest Quiver|🎒|a",
+        "Bolsa de bombas grande|Big Bomb Bag|💣|b", "Bolsa de bombas gigante|Biggest Bomb Bag|💣|a",
+        "Tirachinas 40|Slingshot 40|🎯|c", "Tirachinas 50|Slingshot 50|🎯|c",
+        "Palos y nueces 30|Sticks & Nuts 30|🥜|c", "Palos y nueces 40|Sticks & Nuts 40|🥜|c",
+        "Piedra de Agonía|Stone of Agony|👁️|b", "Tarjeta Gerudo|Gerudo’s Card|🪪|a"
+      ]]
+    ];
+    var Z = {
+      kk: ["Bosque Kokiri", "Kokiri Forest"],
+      ch: ["Castillo de Hyrule", "Hyrule Castle"],
+      ll: ["Rancho Lon Lon", "Lon Lon Ranch"],
+      ka: ["Kakariko", "Kakariko"],
+      bp: ["Bosque Perdido", "Lost Woods"],
+      lh: ["Lago Hylia", "Lake Hylia"],
+      rz: ["Río Zora", "Zora River"],
+      vg: ["Valle Gerudo", "Gerudo Valley"],
+      md: ["Montaña de la Muerte", "Death Mountain"],
+      cm: ["Cráter", "DM Crater"],
+      cg: ["Ciudad Goron", "Goron City"],
+      fz: ["Fuente Zora", "Zora’s Fountain"],
+      lly: ["Llanura de Hyrule", "Hyrule Field"],
+      rzo: ["Dominio Zora", "Zora’s Domain"],
+      pr: ["Pradera Sagrada", "Sacred Meadow"],
+      fg: ["Fortaleza Gerudo", "Gerudo Fortress"],
+      de: ["Desierto Encantado", "Haunted Wasteland"],
+      co: ["Coloso", "Colossus"]
+    };
+    // zona|edad|es|en  (es vacío = bichos en agujero de judías)
+    var G = (
+      "kk|c|Detrás de la casa de los Sabelotodo|Behind the Know-It-All Brothers’ house;ch|c|Garita de la guardia a la entrada|Guard booth at the entrance;ch|c|Árbol cerca de la entrada|Tree near the entrance;ll|c|Árbol a la entrada del rancho|Tree at the ranch entrance;ll|c|Detrás de un techado de madera|Behind a wooden awning;ka|c|Árbol a la entrada del pueblo|Tree at the village entrance;ka|c|Muro de la casa Skulltula|Wall of the Skulltula House;ka|c|Casa en construcción|House under construction;ka|c|Lo alto de la torre de vigilancia|Top of the watchtower;ka|c|Muro de la casa cerca de la salida a la montaña|House wall near the mountain exit;ka|c||;kk|c||;bp|c||;bp|c||;lh|c||;lh|c|Isla pequeña al sur del lago|Small island south of the lake;rz|c|Árbol cerca de la entrada del río|Tree near the river entrance;vg|c||;md|c||;cm|c|Caja de madera|Wooden crate;md|c|Tras la primera pared agrietada|Behind the first cracked wall;cg|c|Caja en el nivel superior|Crate on the upper level;rz|c|Escalera junto a la cascada final|Ladder by the last waterfall;fz|c|Árbol en la esquina sureste|Tree in the southeast corner;fz|c|Frente al tronco caído sobre el agua|By the fallen log over the water;ll|c|Ventana de una casa a la entrada|Window of a house at the entrance;ll|c|Pared que rodea el rancho|Wall around the ranch;lh|c|Detrás del laboratorio|Behind the lab;vg|c|Sobre la pequeña cascada de la entrada|Above the small waterfall at the entrance;ka|c|Pared del cementerio|Graveyard wall;lly|c|Esquina noreste del mapa|Northeast corner of the map;ka|a|Tejado de la casa más al sur|Roof of the southernmost house;kk|a|Encima de la casa de las gemelas|On top of the twins’ house;ch|a|Restos de un arco de ladrillos|Ruins of a brick arch;vg|a|Detrás de la tienda de los carpinteros|Behind the carpenters’ tent;vg|a|Arco de piedra|Stone arch;cg|a|Plataforma colgada de cuerdas|Platform hanging from ropes;rz|a|Pared a mitad del recorrido|Wall midway along the path;rzo|a|Lo alto de la cascada congelada|Top of the frozen waterfall;pr|a|Pared este del laberinto|East wall of the maze;ch|c|Con la Canción de la Tormenta|Using the Song of Storms;bp|a|Con una judía germinada|Using a sprouted bean;cm|c||;md|a|Tras una roca antes de la cima|Behind a rock before the summit;md|a|Tras una roca sobre la cueva de los Dodongos|Behind a rock above Dodongo’s Cavern;lh|a|Dentro de la piscina del laboratorio|Inside the lab pool;lly|c|Entrada al Valle Gerudo|Entrance to Gerudo Valley;lh|a|Árbol seco sobre el Templo del Agua|Dead tree above the Water Temple;rz|a|Muro cerca de la entrada al Dominio Zora|Wall near Zora’s Domain entrance;fg|a|Pared exterior de la fortaleza|Fortress outer wall;fg|a|Zona del campo de tiro a caballo|Horseback archery range;de|a|Casa de piedra|Stone house;co|a|Oasis sin agua|Waterless oasis;co|a|Con una judía germinada|Using a sprouted bean;co|c||;fz|a|Bajo la roca frente a la cueva de la Gran Hada|Under the rock before the Great Fairy cave"
+      ).split(";").map(function(x) {
+      return x.split("|")
+    });
+    var W = [
+      ["Gran Árbol Deku", "Deku Tree", 4],
+      ["Cueva de los Dodongos", "Dodongo’s Cavern", 5],
+      ["Tripa de Jabu-Jabu", "Jabu-Jabu’s Belly", 4],
+      ["Templo del Bosque", "Forest Temple", 5],
+      ["Templo del Fuego", "Fire Temple", 5],
+      ["Caverna de Hielo", "Ice Cavern", 3],
+      ["Templo del Agua", "Water Temple", 5],
+      ["Pozo de Kakariko", "Bottom of the Well", 3],
+      ["Templo de las Sombras", "Shadow Temple", 5],
+      ["Templo del Espíritu", "Spirit Temple", 5]
+    ];
+    var C = [
+      ["hp", "Piezas de corazón", "Heart Pieces", "💗", 36],
+      ["hc", "Contenedores de corazón", "Heart Containers", "❤️", 8]
+    ];
+    var T = {
+      es: {
+        ti: "Zelda: Ocarina of Time",
+        all: "Todo",
+        c: "Niño",
+        a: "Adulto",
+        rs: "Reiniciar todo",
+        rs2: "¿Seguro? Pulsa otra vez",
+        nt: "Toca para marcar. Tu progreso se guarda en este navegador.",
+        gs: "Skulltulas doradas",
+        out: "Fuera de mazmorras",
+        ins: "Dentro de mazmorras",
+        col: "Coleccionables",
+        bug: "Bichos en agujero de judías",
+        hide: "Ocultar hechas",
+        zon: "Todas las zonas",
+        got: "¡Conseguido!"
+      },
+      en: {
+        ti: "Zelda: Ocarina of Time",
+        all: "All",
+        c: "Child",
+        a: "Adult",
+        rs: "Reset everything",
+        rs2: "Sure? Tap again",
+        nt: "Tap to mark. Progress is saved in this browser.",
+        gs: "Gold Skulltulas",
+        out: "Outside dungeons",
+        ins: "Inside dungeons",
+        col: "Collectibles",
+        bug: "Bugs in a bean patch",
+        hide: "Hide done",
+        zon: "All zones",
+        got: "Got it!"
+      }
+    };
+    var K = "zelda-oot-v2",
+      S = {
+        d: {},
+        g: {},
+        w: {},
+        n: {},
+        o: {},
+        l: "es",
+        f: "all",
+        t: "main",
+        s: 1,
+        z: "",
+        h: 0
+      };
+    try {
+      var r = localStorage.getItem(K);
+      if (r) S = Object.assign(S, JSON.parse(r))
+    } catch (e) {}
+
+    function save() {
+      try {
+        localStorage.setItem(K, JSON.stringify(S))
+      } catch (e) {}
+    }
+
+    function $(i) {
+      return document.getElementById(i)
+    }
+    var armed = false,
+      last = "",
+      tt, AC;
+
+    function jingle() {
+      if (!S.s) return;
+      try {
+        AC = AC || new(window.AudioContext || window.webkitAudioContext)();
+        [784, 740, 698, 622, 415, 440, 622, 659, 831, 1047].forEach(function(f, i) {
+          var o = AC.createOscillator(),
+            g = AC.createGain();
+          o.type = "triangle";
+          o.frequency.value = f;
+          g.gain.setValueAtTime(.12, AC.currentTime + i * .09);
+          g.gain.exponentialRampToValueAtTime(.001, AC.currentTime + i * .09 + .16);
+          o.connect(g);
+          g.connect(AC.destination);
+          o.start(AC.currentTime + i * .09);
+          o.stop(AC.currentTime + i * .09 + .18)
+        })
+      } catch (e) {}
+    }
+
+    function toast(n) {
+      var e = $("toast");
+      e.textContent = "★ " + n + " – " + T[S.l].got;
+      e.className = "s";
+      clearTimeout(tt);
+      tt = setTimeout(function() {
+        e.className = ""
+      }, 1600)
+    }
+
+    function mark(o, k, name) {
+      if (o[k]) delete o[k];
+      else {
+        o[k] = 1;
+        last = k;
+        jingle();
+        toast(name)
+      }
+      save();
+      render()
+    }
+
+    function nm(p, L) {
+      return L === "es" ? p[0] : p[1]
+    }
+
+    function stats() {
+      var r = {};
+      D.forEach(function(s) {
+        var c = 0,
+          n = 0;
+        s[4].forEach(function(it, i) {
+          var a = it.split("|")[3];
+          if (S.f !== "all" && a !== "b" && a !== S.f) return;
+          n++;
+          if (S.d[s[0] + i]) c++
+        });
+        r[s[0]] = [c, n]
+      });
+      var gc = 0,
+        gn = 0;
+      G.forEach(function(x, i) {
+        if (S.f !== "all" && x[1] !== S.f) return;
+        gn++;
+        if (S.g[i]) gc++
+      });
+      W.forEach(function(w, i) {
+        for (var j = 0; j < w[2]; j++) {
+          gn++;
+          if (S.w[i + "_" + j]) gc++
+        }
+      });
+      r.gs = [gc, gn];
+      return r
+    }
+
+    function render() {
+      var Y = window.scrollY,
+        L = S.l,
+        t = T[L],
+        m = $("m"),
+        st = stats(),
+        tot = 0,
+        dn = 0;
+      document.documentElement.lang = L;
+      m.innerHTML = "";
+      for (var k in st) {
+        tot += st[k][1];
+        dn += st[k][0]
+      }
+      var pc = tot ? Math.round(dn / tot * 100) : 0,
+        h = Math.round(pc / 10),
+        hs = "";
+      for (var i = 0; i < 10; i++) hs += i < h ? "❤️" : "🖤";
+      $("ti").textContent = "🗡️ " + t.ti + " · " + pc + "%";
+      $("hr").textContent = hs;
+      $("lg").textContent = L === "es" ? "🌐 EN" : "🌐 ES";
+      $("sn").textContent = S.s ? "🔊" : "🔇";
+      [
+        ["fl", "all"],
+        ["fc", "c"],
+        ["fa", "a"]
+      ].forEach(function(p) {
+        var b = $(p[0]);
+        b.textContent = (p[1] === "c" ? "🧒 " : p[1] === "a" ? "🧑 " : "") + t[p[1]];
+        b.className = S.f === p[1] ? "on" : ""
+      });
+      $("rs").textContent = armed ? t.rs2 : t.rs;
+      $("nt").textContent = t.nt;
+      var nv = $("nv"),
+        sc = nv.scrollLeft;
+      nv.innerHTML = "";
+      D.concat([
+        ["gs", t.gs, t.gs, "🕷️"],
+        ["col", t.col, t.col, "📦"]
+      ]).forEach(function(s) {
+        var b = document.createElement("button"),
+          q = st[s[0]],
+          nme = s[0] === "gs" || s[0] === "col" ? s[1] : (L === "es" ? s[1] : s[2]);
+        b.className = S.t === s[0] ? "on" : "";
+        b.innerHTML = s[3] + " " + nme + (q ? "<small>" + (q[1] && q[0] === q[1] ? "✅ " : "") + q[0] + "/" + q[1] +
+          "</small>" : "");
+        b.onclick = function() {
+          S.t = s[0];
+          save();
+          render();
+          scrollTo(0, 0)
+        };
+        nv.appendChild(b)
+      });
+      nv.scrollLeft = sc;
+      var cur = D.filter(function(s) {
+        return s[0] === S.t
+      })[0];
+      if (cur) {
+        var q = st[cur[0]];
+        m.innerHTML = "<h2><span>" + cur[3] + " " + (L === "es" ? cur[1] : cur[2]) + "</span><small>" + (q[1] && q[
+          0] === q[1] ? "✅ " : "") + q[0] + "/" + q[1] + "</small></h2>";
+        var g = document.createElement("div");
+        g.className = "g";
+        cur[4].forEach(function(it, i) {
+          var p = it.split("|"),
+            a = p[3],
+            key = cur[0] + i;
+          if (S.f !== "all" && a !== "b" && a !== S.f) return;
+          var d = document.createElement("div"),
+            on = S.d[key];
+          d.className = "t" + (on ? " on" : "") + (last === key ? " pop" : "");
+          d.innerHTML = (a !== "b" ? '<span class="tag ' + a + '">' + (a === "c" ? "🧒" : "🧑") + "</span>" : "") +
+            '<span class="ic">' + p[2] + '</span><span class="nm">' + (L === "es" ? p[0] : p[1]) + "</span>" + (p[
+              4] ? '<span class="lc">📍 ' + (L === "es" ? p[4] : p[5]) + "</span>" : "");
+          d.onclick = function() {
+            mark(S.d, key, nm(p, L))
+          };
+          g.appendChild(d)
+        });
+        m.appendChild(g)
+      } else if (S.t === "gs") {
+        m.innerHTML = "<h2><span>🕷️ " + t.gs + "</span><small>" + (st.gs[0] === st.gs[1] ? "✅ " : "") + st.gs[0] +
+          "/" + st.gs[1] + "</small></h2>";
+        var f = document.createElement("div");
+        f.className = "fl";
+        var hb = document.createElement("button");
+        hb.textContent = "👁️ " + t.hide;
+        hb.className = S.h ? "on" : "";
+        hb.onclick = function() {
+          S.h = S.h ? 0 : 1;
+          save();
+          render()
+        };
+        f.appendChild(hb);
+        m.appendChild(f);
+
+        function acc(key, title, total, done, body) {
+          var w = document.createElement("div");
+          w.className = "ac";
+          var h = document.createElement("button"),
+            ok = total && done === total,
+            op = S.o[key];
+          h.className = "ah" + (ok ? " ok" : "");
+          h.innerHTML = "<span>" + (op ? "▼" : "▶") + " " + title + "</span><span>" + (ok ? "✅ " : "") + done + "/" +
+            total + "</span>";
+          h.onclick = function() {
+            S.o[key] = op ? 0 : 1;
+            save();
+            render()
+          };
+          w.appendChild(h);
+          if (op) w.appendChild(body());
+          m.appendChild(w)
+        }
+        var o = document.createElement("h2");
+        o.innerHTML = "<span>" + t.out + "</span>";
+        m.appendChild(o);
+        Object.keys(Z).forEach(function(z) {
+          var ix = [],
+            dn2 = 0;
+          G.forEach(function(x, i) {
+            if (x[0] === z && (S.f === "all" || x[1] === S.f)) {
+              ix.push(i);
+              if (S.g[i]) dn2++
+            }
+          });
+          if (!ix.length || (S.h && dn2 === ix.length)) return;
+          acc("z" + z, "📍 " + Z[z][L === "es" ? 0 : 1], ix.length, dn2, function() {
+            var c = document.createElement("div");
+            ix.forEach(function(i) {
+              var x = G[i];
+              if (S.h && S.g[i]) return;
+              var d = document.createElement("div"),
+                tx = x[2] ? (L === "es" ? x[2] : x[3]) : t.bug;
+              d.className = "gs" + (S.g[i] ? " on" : "") + (last === "g" + i ? " pop" : "");
+              d.innerHTML = '<span class="ic">🕷️</span><span class="tx">' + tx +
+                '</span><span class="tag" style="position:static;background:var(--' + x[1] + ')">' + (x[
+                  1] === "c" ? "🧒" : "🧑") + '</span><span class="n">#' + (i + 1) + "</span>";
+              d.onclick = function() {
+                mark(S.g, i, tx)
+              };
+              c.appendChild(d)
+            });
+            return c
+          })
+        });
+        var o2 = document.createElement("h2");
+        o2.innerHTML = "<span>" + t.ins + "</span>";
+        m.appendChild(o2);
+        W.forEach(function(w, i) {
+          var dn3 = 0,
+            nme = L === "es" ? w[0] : w[1];
+          for (var j = 0; j < w[2]; j++)
+            if (S.w[i + "_" + j]) dn3++;
+          acc("w" + i, "🏰 " + nme, w[2], dn3, function() {
+            var d = document.createElement("div");
+            d.className = "dg";
+            for (var j = 0; j < w[2]; j++)(function(j) {
+              var b = document.createElement("button"),
+                k = i + "_" + j;
+              b.className = S.w[k] ? "on" : "";
+              b.textContent = "🕷️ " + (j + 1);
+              b.onclick = function() {
+                mark(S.w, k, nme + " #" + (j + 1))
+              };
+              d.appendChild(b)
+            })(j);
+            return d
+          })
+        })
+      } else {
+        m.innerHTML = "<h2><span>📦 " + t.col + "</span></h2>";
+        var cg = document.createElement("div");
+        cg.className = "g";
+        C.forEach(function(c) {
+          var v = S.n[c[0]] || 0,
+            d = document.createElement("div");
+          d.className = "t cn";
+          d.innerHTML = '<span class="ic">' + c[3] + '</span><span class="nm">' + (L === "es" ? c[1] : c[2]) +
+            "</span><b>" + v + " / " + c[4] + "</b><button>−</button> <button>+</button>";
+          var b = d.querySelectorAll("button");
+          b[0].onclick = function() {
+            S.n[c[0]] = Math.max(0, v - 1);
+            save();
+            render()
+          };
+          b[1].onclick = function() {
+            S.n[c[0]] = Math.min(c[4], v + 1);
+            if (v < c[4]) jingle();
+            save();
+            render()
+          };
+          cg.appendChild(d)
+        });
+        m.appendChild(cg)
+      }
+      last = "";
+      window.scrollTo(0, Y)
+    }
+    $("lg").onclick = function() {
+      S.l = S.l === "es" ? "en" : "es";
+      save();
+      render()
+    };
+    $("sn").onclick = function() {
+      S.s = S.s ? 0 : 1;
+      save();
+      render()
+    };
+    [
+      ["fl", "all"],
+      ["fc", "c"],
+      ["fa", "a"]
+    ].forEach(function(p) {
+      $(p[0]).onclick = function() {
+        S.f = p[1];
+        save();
+        render()
+      }
+    });
+    $("rs").onclick = function() {
+      if (!armed) {
+        armed = true;
+        render();
+        setTimeout(function() {
+          armed = false;
+          render()
+        }, 4000);
+        return
+      }
+      armed = false;
+      S.d = {};
+      S.g = {};
+      S.w = {};
+      S.n = {};
+      S.o = {};
+      save();
+      render()
+    };
+    render();
+  </script>
+</body>
+
+</html>
